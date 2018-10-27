@@ -40,6 +40,14 @@ public class BaseUnit : MonoBehaviour {
 		}
 	}
 
+	public void GetHealed()
+	{
+		if(currentHealth != maxHealth)
+		{
+			currentHealth++;
+		}
+	}
+
 	protected virtual void Die()
 	{
 		anim.SetBool("Dead", true);

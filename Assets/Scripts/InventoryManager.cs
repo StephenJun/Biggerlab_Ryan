@@ -11,15 +11,12 @@ public class InventoryManager : Singleton<InventoryManager> {
 	public int maxCapacityOfPac;
 	public int currentCapacity;
 
-    public int initPistalAmmo = 75;
-    public int initGunAmmo = 30;
-    public int initGrenade = 15;
 
 	// Use this for initialization
 	void Start () {
-		_weaponAmmoCount.Add("111", initPistalAmmo);
-		_weaponAmmoCount.Add("222", initGunAmmo);
-		_weaponAmmoCount.Add("333", initGrenade);
+		_weaponAmmoCount.Add("111", 75);
+		_weaponAmmoCount.Add("222", 30);
+		_weaponAmmoCount.Add("333", 15);
 		defaultWeapon = "111";
 		equippedWeapon = defaultWeapon;
 	}

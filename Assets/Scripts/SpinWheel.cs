@@ -15,9 +15,10 @@ public class SpinWheel : MonoBehaviour {
 	private int targetItemIndex;
 	private bool clockwise = true;
 	private System.Action EndCallBack; //旋转结束回调
-
+	private Quaternion initRot;
 	// Use this for initialization
 	void Start () {
+		initRot = transform.rotation;
 		//避免没有预设曲线报错(这里建一条先慢再快再慢的动画曲线)
 		if (animationCurves == null)
 		{
@@ -102,11 +103,12 @@ public class SpinWheel : MonoBehaviour {
 		spinning = false;
 	}
 
-	private void AfterSpinning()
+	public void AfterSpinning()
 	{
 		UIManager.instance.HUD.spinWheel.SetActive(false);
 		UIManager.instance.HUD.openButton.interactable = true;
 		GameManager.instance.gamePause = false;
+		transform.rotation = initRot;
 	}
 
 	private float GetFitAngle(float angle)

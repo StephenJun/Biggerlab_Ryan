@@ -7,13 +7,13 @@ using UnityEngine.UI;
 public class HUD : UIScreen {
 
 	public static event Action OnSlowBuff;
-	public static event Action OnNullBuff;
+	public static event Action OnHealBuff;
 	public static event Action OnGrenadeBuff;
 	public static event Action OnGunBuff;
 	public static event Action OnBulletBuff;
 	public static event Action OnHealthBuff;
 	public static event Action OnHurtBuff;
-	public static event Action OnEnemyBuff;
+	public static event Action OnAmmoBuff;
 	private List<Action> allDebuffs = new List<Action>();
 	public List<string> resultMessage = new List<string>();
 
@@ -31,13 +31,13 @@ public class HUD : UIScreen {
 
 	// Use this for initialization
 	void Start () {
-		allDebuffs.Add(OnEnemyBuff);
+		allDebuffs.Add(OnAmmoBuff);
 		allDebuffs.Add(OnBulletBuff);
 		allDebuffs.Add(OnSlowBuff);
 		allDebuffs.Add(OnGunBuff);
 		allDebuffs.Add(OnHurtBuff);
 		allDebuffs.Add(OnGrenadeBuff);
-		allDebuffs.Add(OnNullBuff);	
+		allDebuffs.Add(OnHealBuff);	
 		allDebuffs.Add(OnHealthBuff);
 		
 

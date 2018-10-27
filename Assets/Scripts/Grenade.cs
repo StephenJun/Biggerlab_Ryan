@@ -21,6 +21,11 @@ public class Grenade : MonoBehaviour {
 	{
 		yield return new WaitForSeconds(1.5f);
 		GameObject.FindObjectOfType<PlayerController>().GetComponent<AudioSource>().PlayOneShot(AudioManager.instance.grenadeExplosion);
+		GrenadeExplosion();
+	}
+
+	private void GrenadeExplosion()
+	{
 		GameEffectManager.instance.AddWorldEffect("GrenadeExplosion", transform.position + new Vector3(0, 1.5f, 0), 1f, 0.5f);
 		Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
 		foreach (var col in cols)
@@ -31,5 +36,14 @@ public class Grenade : MonoBehaviour {
 			}
 		}
 		Destroy(gameObject);
+	}
+
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		EnemyAI enemy = collision.gameObject.GetComponent<EnemyAI>();
+		if (enemy)
+		{
+			GrenadeExplosion();
+		}
 	}
 }

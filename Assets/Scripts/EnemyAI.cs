@@ -62,6 +62,6 @@ public class EnemyAI : BaseUnit {
 	{
 		base.Die();
 		gameObject.GetComponent<Collider2D>().isTrigger = true;
-		Instantiate(pickupPrefab, transform.position, Quaternion.identity);
+		//Instantiate(pickupPrefab, transform.position, Quaternion.identity);
 	}
 }

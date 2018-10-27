@@ -156,7 +156,7 @@ public class PlayerController : BaseUnit {
 		anim.SetTrigger("Throw");
 		//rb.AddForce(new Vector2(0, jumpForce));
 		GameObject grenade = Instantiate(GrenadePrefab, gunShootPos.position, Quaternion.identity);
-		grenade.GetComponent<Rigidbody2D>().AddForce(throwForce * (Vector2.one));
+		grenade.GetComponent<Rigidbody2D>().AddForce(throwForce * new Vector2(1, 0.5f));
 	}
 
 	private void OnCollisionEnter2D(Collision2D collision)

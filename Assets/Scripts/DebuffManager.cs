@@ -16,8 +16,8 @@ public class DebuffManager : MonoBehaviour {
 	{
 		HUD.OnSlowBuff += HUD_OnSlowBuff;
 		HUD.OnBulletBuff += HUD_OnBulletBuff;
-		HUD.OnNullBuff += HUD_OnNullBuff;
-		HUD.OnEnemyBuff += HUD_OnEnemyBuff;
+		HUD.OnHealBuff += HUD_OnHealBuff;
+		HUD.OnAmmoBuff += HUD_OnAmmoBuff;
 		HUD.OnGrenadeBuff += HUD_OnGrenadeBuff;
 		HUD.OnGunBuff += HUD_OnGunBuff;
 		HUD.OnHurtBuff += HUD_OnHurtBuff;
@@ -28,8 +28,8 @@ public class DebuffManager : MonoBehaviour {
 	{
 		HUD.OnSlowBuff -= HUD_OnSlowBuff;
 		HUD.OnBulletBuff -= HUD_OnBulletBuff;
-		HUD.OnNullBuff -= HUD_OnNullBuff;
-		HUD.OnEnemyBuff -= HUD_OnEnemyBuff;
+		HUD.OnHealBuff -= HUD_OnHealBuff;
+		HUD.OnAmmoBuff -= HUD_OnAmmoBuff;
 		HUD.OnGrenadeBuff -= HUD_OnGrenadeBuff;
 		HUD.OnGunBuff -= HUD_OnGunBuff;
 		HUD.OnHurtBuff -= HUD_OnHurtBuff;
@@ -64,16 +64,19 @@ public class DebuffManager : MonoBehaviour {
 		CallChestPopup(msg);
 	}
 
-	private void HUD_OnEnemyBuff()
+	private void HUD_OnAmmoBuff()
 	{
-		GameManager.instance.timeLeft -= 5;
-		string msg = "Time left reduce 5 seconds!";
+		InventoryManager.instance.AddAmmoForWeapon("111", 10);
+		InventoryManager.instance.AddAmmoForWeapon("222", 10);
+		InventoryManager.instance.AddAmmoForWeapon("333", 5);
+		string msg = "You got some supplies!";
 		CallChestPopup(msg);
 	}
 
-	private void HUD_OnNullBuff()
+	private void HUD_OnHealBuff()
 	{
-		string msg = "Nothing Happened~";
+		player.GetHealed();
+		string msg = "You got healed!";
 		CallChestPopup(msg);
 	}
 
@@ -87,7 +90,7 @@ public class DebuffManager : MonoBehaviour {
 	private void HUD_OnSlowBuff()
 	{
 		player.speed *= 0.8f;
-		string msg = "You're slowing down ";
+		string msg = "You got slow down!";
 		CallChestPopup(msg);
 	}
 
@@ -98,8 +101,6 @@ public class DebuffManager : MonoBehaviour {
 
 	void AfterSpinning()
 	{
-		UIManager.instance.HUD.spinWheel.SetActive(false);
-		UIManager.instance.HUD.openButton.interactable = true;
-		GameManager.instance.gamePause = false;
+		UIManager.instance.HUD.spinWheel.GetComponentInChildren<SpinWheel>().AfterSpinning();
 	}
 }

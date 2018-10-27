@@ -23,6 +23,7 @@ public class CameraFollow : MonoBehaviour {
 
 	private void LateUpdate()
 	{
-		cam.position = Vector3.Lerp(cam.position, followTarget.position - (followTarget.forward * followDistance) + (Vector3.right * rightDistance) + (followTarget.up * upDistance), Time.deltaTime * dampTrace);
+		Vector3 tempTarget = followTarget.position - (followTarget.forward * followDistance) + (Vector3.right * rightDistance) + (followTarget.up * upDistance);
+		cam.position = Vector3.Lerp(cam.position, new Vector3(tempTarget.x, cam.position.y, tempTarget.z), Time.deltaTime * dampTrace);
 	}
 }
